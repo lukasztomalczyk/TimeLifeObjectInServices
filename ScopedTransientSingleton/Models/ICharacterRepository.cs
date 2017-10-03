@@ -2,15 +2,15 @@
 
 using System.Collections.Generic;
 
-namespace DifferenceBetweenScopedTransientSingleton.Models 
+namespace ScopedTransientSingleton.Models
 {
-    public interface ICharacterRepository 
+    public interface ICharacterRepository
     {
         string _OutputString {set; get; }
-       void ChangeLowerCaseToUpCaseInString (string _parameter) ;
+        void ChangeLowerCaseToUpCaseInString (string _parameter) ;
 
         IEnumerable<Character> ListAll();
-        void Add ();
+        void Add (Character _parameter);
 
     }
 }

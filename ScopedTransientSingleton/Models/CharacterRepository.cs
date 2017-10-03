@@ -1,19 +1,21 @@
 
 
 using System.Collections.Generic;
-using DifferenceBetweenScopedTransientSingleton.Models;
+using ScopedTransientSingleton.Models;
 
-namespace DifferenceBetweenScopedTransientSingleton
+namespace ScopedTransientSingleton
 {
 
     public class CharacterRepository : ICharacterRepository
     {
+        public ContextRepository context { get; set; }
+
         public CharacterRepository(ContextRepository _context)
         {
-            this.context = _context;
+            context = _context;
         }
         public string _OutputString { get; set;}
-        public ContextRepository context { get; set; }
+
 
         public void Add(Character _parameter)
         {
@@ -29,7 +31,7 @@ namespace DifferenceBetweenScopedTransientSingleton
 
         public IEnumerable<Character> ListAll()
         {
-            return context
+            return context.
         }
 
     }

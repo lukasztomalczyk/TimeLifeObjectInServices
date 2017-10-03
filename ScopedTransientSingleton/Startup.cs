@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using DifferenceBetweenScopedTransientSingleton.Models;
+using ScopedTransientSingleton.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Routing;
@@ -10,8 +10,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Microsoft.EntityFrameworkCore;
 
-namespace DifferenceBetweenScopedTransientSingleton
+namespace ScopedTransientSingleton
 {
     public class Startup
     {
@@ -26,7 +27,7 @@ namespace DifferenceBetweenScopedTransientSingleton
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-            services.AddDbContext<ContextRepository>();
+            services.AddDbContext<ContextRepository>(option => option.UseInMemoryDatabase("DbContext"));
             services.AddSingleton<ICharacterRepository, CharacterRepository>();
         }
 
@@ -39,6 +40,7 @@ namespace DifferenceBetweenScopedTransientSingleton
             }
 
             app.UseMvc(OptionRoute);
+
         }
 
         private void OptionRoute(IRouteBuilder obj)
